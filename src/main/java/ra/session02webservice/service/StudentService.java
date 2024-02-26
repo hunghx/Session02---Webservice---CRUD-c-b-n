@@ -3,6 +3,7 @@ package ra.session02webservice.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ra.session02webservice.entity.Student;
+import ra.session02webservice.exception.ResourceNotFoundException;
 import ra.session02webservice.repository.StudentRepository;
 
 import java.util.List;
@@ -17,8 +18,8 @@ public class StudentService implements IStudentService{
     }
 
     @Override
-    public Student findById(Integer id) {
-        return studentRepository.findById(id).orElseThrow(() -> new RuntimeException("Student not found"));
+    public Student findById(Integer id) throws ResourceNotFoundException {
+        return studentRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Student not found"));
     }
 
     @Override

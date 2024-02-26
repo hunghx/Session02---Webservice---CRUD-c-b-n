@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ra.session02webservice.entity.Student;
+import ra.session02webservice.exception.ResourceNotFoundException;
 import ra.session02webservice.service.IStudentService;
 
 import java.util.List;
@@ -21,12 +22,12 @@ public class StudentController {
     }
     // tìm kiếm theo id
     @GetMapping("/{id}")
-    public ResponseEntity<?> findById(@PathVariable Integer id){
+    public ResponseEntity<?> findById(@PathVariable Integer id) throws ResourceNotFoundException {
         return ResponseEntity.ok(studentService.findById(id));
     }
     // xóa theo id
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteById(@PathVariable Integer id){
+    public ResponseEntity<Student> deleteById(@PathVariable Integer id){
         studentService.delete(id);
         return ResponseEntity.noContent().build();
     }
@@ -37,7 +38,7 @@ public class StudentController {
     }
     // chỉnh sửa theo id
     @PutMapping("/{id}")
-    public ResponseEntity<Student> updateStudent(@RequestBody Student student, @PathVariable Integer id){
+    public ResponseEntity<Student> updateStudent(@RequestBody Student student, @PathVariable Integer id) throws ResourceNotFoundException {
         findById(id);
         student.setId(id);
         return new ResponseEntity<>(studentService.save(student),HttpStatus.OK);
