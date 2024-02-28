@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    fetch('http://localhost:3000/posts?_page=1&?_limit=10')
+        .then(response => response.json())
+        .then(json => console.log(json))
+</script>
+</body>
+</html>

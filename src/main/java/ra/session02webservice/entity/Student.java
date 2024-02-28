@@ -25,4 +25,7 @@ public class Student {
     private String address;
     @Column(unique = true)
     private String phone;
+    @ManyToOne
+    @JoinColumn(name = "classId")
+    private Classes classes;
 }
