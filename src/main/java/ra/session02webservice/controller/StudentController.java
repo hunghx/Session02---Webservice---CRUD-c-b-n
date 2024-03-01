@@ -1,9 +1,11 @@
 package ra.session02webservice.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ra.session02webservice.dto.PageDto;
 import ra.session02webservice.entity.Student;
 import ra.session02webservice.exception.ResourceNotFoundException;
 import ra.session02webservice.service.IStudentService;
@@ -17,8 +19,8 @@ public class StudentController {
     private  final IStudentService studentService;
     // tạo ra 1 api lấy về danh sách tất cả sinh viên
     @GetMapping
-    public ResponseEntity<List<Student>> findAllStudent(){
-        return new ResponseEntity<>(studentService.findAll(), HttpStatus.OK);
+    public ResponseEntity<PageDto> findAllStudent(Pageable pageable){
+        return new ResponseEntity<>(studentService.findAll(pageable), HttpStatus.OK);
     }
     // tìm kiếm theo id
     @GetMapping("/{id}")

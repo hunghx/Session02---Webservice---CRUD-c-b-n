@@ -14,5 +14,6 @@ public class PageDto {
     private long pages;
     private long totalElements;
     private int number;
+    private int size;
     private Sort sort;
 }

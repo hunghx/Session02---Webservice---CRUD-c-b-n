@@ -1,6 +1,7 @@
 package ra.session02webservice.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,5 +28,6 @@ public class Student {
     private String phone;
     @ManyToOne
     @JoinColumn(name = "classId")
+    @JsonIgnore
     private Classes classes;
 }
